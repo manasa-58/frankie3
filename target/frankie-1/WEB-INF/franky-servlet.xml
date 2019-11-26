@@ -1,0 +1,73 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<context:component-scan base-package="com.frankie.controller" />
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<mvc:exclude-mapping path="/loginUser" />
+			<mvc:exclude-mapping path="/register" />
+			<mvc:exclude-mapping path="/logoutUser" />
+			<mvc:exclude-mapping path="/forProfilePage" />
+			<mvc:exclude-mapping path="/testIoc" />
+
+			<bean class="com.frankie.interceptor.SessionValidationInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	<!-- service layer beans -->
+	<bean class="com.frankie.services.RegisterServices"></bean>
+	<bean class="com.frankie.services.OrderManagementServices"></bean>
+	<!--Hibernate Dao layer beans -->
+	<bean class="com.frankie.daoimpl.RegisterHibernateDaoImpl"></bean>
+	<bean class="com.frankie.daoimpl.OrderManagementHibernateDao"></bean>
+	<!-- Jdbc Dao layer beans -->
+	<!-- <bean class="com.frankie.dao.jdbc.impl.RegisterJdbcDaoImpl"></bean> 
+		<bean class="com.frankie.dao.jdbc.impl.OrderManagementJdbcDaoImpl"></bean> -->
+	<!-- <bean class=" com.controller.pojo.user.Student" scope="prototype">
+		<property name="clg" value="VITS"></property>
+		<property name="city" value="KNR"></property>
+		<property name="pport" ref="passportobj"></property>
+		<property name="subjects">
+			<list>
+				<value>Mathematics</value>
+				<value>Physics</value>
+				<value>Chemistry</value>
+			</list>
+
+		</property> -->
+		<!-- <bean class=" com.controller.pojo.user.Student" scope="singleton">
+		<property name="clg" value="VITS"></property>
+		<property name="city" value="KNR"></property>
+		<property name="pport" ref="passportobj"></property>
+		
+	</bean> -->
+	<bean class="com.controller.pojo.user.Student">
+	<constructor-arg value="KITS"/>
+	<!-- <constructor-arg value="KNR"/> -->
+	<constructor-arg ref="passportobj"/>
+	</bean>
+	<bean id="passportobj" class="com.controller.pojo.user.Passport" scope="singleton"></bean>
+	
+	<bean  id="kitObj" class="com.controller.pojo.user.College">
+	<property name="collegeName" value="KITS"></property></bean>
+	
+	<bean  id="cbiObj" class="com.controller.pojo.user.College">
+	<property name="collegeName" value="CBIT"></property></bean>
+</beans>
