@@ -30,6 +30,15 @@ public class TestIoc {
 		   s4.setPport(new Passport());
 		   System.out.println("student 4 details entered");
 		   
+		   Student s6= new Student();
+		   s6.setStdId(133);
+		   s6.setName("rachana");
+		   s6.setClg("VITS");
+		   s6.setCity("HZB");
+		   s6.setPport(new Passport());
+		   System.out.println("student 4 details entered");
+		   
+		   
 	}
   
 }
