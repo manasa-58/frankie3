@@ -21,6 +21,15 @@ public class TestIoc {
 		   s3.setCity("Warangal");
 		   s3.setPport(new Passport());
 		   System.out.println(s3.getName()+"  "+s3.getClg());
+		   
+		   Student s4= new Student();
+		   s4.setStdId(123);
+		   s4.setName("ravali");
+		   s4.setClg("cmr");
+		   s4.setCity("nzd");
+		   s4.setPport(new Passport());
+		   System.out.println("student 4 details entered");
+		   
 	}
   
 }
