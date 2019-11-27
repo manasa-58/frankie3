@@ -13,6 +13,14 @@ public class TestIoc {
 		s1.setPport(new Passport());
 		
 		Student s2=new Student(166,"raashi","KITS","KNR",new Passport());
+		
+		 Student s3=new Student();
+		   s3.setStdId(123);
+		   s3.setName("Jaya");
+		   s3.setClg("NGMA");
+		   s3.setCity("Warangal");
+		   s3.setPport(new Passport());
+		   System.out.println(s3.getName()+"  "+s3.getClg());
 	}
-
+  
 }
